@@ -21,8 +21,8 @@
   "license": "MIT",
   "readme": "README: meanSocket",
   "readmeFilename": "README.md",
-  "_id": "mean-socket@0.0.1",
+  "_id": "socket@0.0.2",
   "scripts": {},
   "_shasum": "bb90ca73b9651560f9f6b725e1d6a4ed53c6c6ba",
-  "_from": "node_modules/mean-socket"
+  "_from": "node_modules/socket"
 }
