@@ -4,33 +4,35 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-  Article = mongoose.model('Article');
+  Message = mongoose.model('Message'),
+  _ = require('lodash');
 
 exports.createFromSocket = function(data, cb) {
-  var article = new Article(data.message);
-  article.user = data.user._id;
-  article.title = data.channel;
-  article.save(function(err) {
+  console.log(data);
+  var message = new Message(data.message);
+  message.user = data.user._id;
+  message.time = new Date();
+  message.save(function(err) {
     if (err) console.log(err);
-    Article.findOne({
-      _id: article._id
-    }).populate('user', 'name username').exec(function(err, article) {
-      return cb(article);
+    Message.findOne({
+      _id: message._id
+    }).populate('user', 'name username').exec(function(err, message) {
+      return cb(message);
     });
   });
 };
 
 exports.getAllForSocket = function(channel, cb) {
-  Article.find({
-    title: channel
-  }).sort('created').populate('user', 'name username').exec(function(err, articles) {
-    return cb(articles);
+  Message.find({
+    channel: channel
+  }).sort('time').populate('user', 'name username').exec(function(err, messages) {
+    return cb(messages);
   });
 };
 
 exports.getListOfChannels = function(cb) {
-  Article.distinct('title', {}, function(err, articles) {
-    console.log(articles)
-    return cb(articles);
+  Message.distinct('channel', {}, function(err, channels) {
+    console.log('channels', channels);
+    return cb(channels);
   });
 };

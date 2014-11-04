@@ -2307,7 +2307,7 @@ JSONPPolling.prototype.doPoll = function () {
   this.script = script;
 
   var isUAgecko = 'undefined' != typeof navigator && /gecko/i.test(navigator.userAgent);
-  
+
   if (isUAgecko) {
     setTimeout(function () {
       var iframe = document.createElement('iframe');
@@ -4360,7 +4360,7 @@ module.exports = hasBinary;
 
 function hasBinary(data) {
 
-  function recursiveCheckForBinary(obj) { 
+  function recursiveCheckForBinary(obj) {
     if (!obj) return false;
 
     if ( (global.Buffer && Buffer.isBuffer(obj)) ||
