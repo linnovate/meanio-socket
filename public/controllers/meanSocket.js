@@ -6,7 +6,7 @@ angular.module('mean.socket').controller('MeanSocketController', ['$scope', '$st
 		$scope.package = {
 			name: 'socket'
 		};
-	
+
 		$scope.socketAfterSend = function(message) {
 			$scope.message = {};
 		};

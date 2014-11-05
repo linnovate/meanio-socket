@@ -1,8 +1,9 @@
-//'use strict'; //fix for safari
+'use strict'; //fix for safari
 
 angular.module('mean.socket').directive('meanSocket', function(Global, MeanSocket) {
 	return {
 		restrict: 'A',
+		replace: true,
 		scope: {
 			message: '=',
 			afterSend: '&'
@@ -68,7 +69,7 @@ angular.module('mean.socket').directive('useMeanSocket', function(Global, MeanSo
 			// // ///////////////////////////////////////////////////////////////////////
 			// // ///////////////////////////////////////////////////////////////////////
 
-			MeanSocket.on('channels', function channels(channels) {
+			MeanSocket.on('channels', function (channels) {
 				scope.meanSocketAfterGetAllChannels({
 					channels: channels
 				});
@@ -82,21 +83,21 @@ angular.module('mean.socket').directive('useMeanSocket', function(Global, MeanSo
 				user: scope.global.user._id
 			});
 
-			MeanSocket.on('user:joined', function user(user) {
+			MeanSocket.on('user:joined', function (user) {
 				// scope.meanSocketAfterGet({
 				// 	message: user
 				// });
 			});
 
 			scope.listenChannel = function listenChannel(channel) {
-				MeanSocket.on('user:channel:joined:' + channel, function user(user) {
+				MeanSocket.on('user:channel:joined:' + channel, function (user) {
 					console.log('user:joined', channel);
 					// scope.meanSocketAfterGet({
 					// 	message: user
 					// });
 				});
 
-				MeanSocket.on('messages:channel:' + channel, function messages(messages) {
+				MeanSocket.on('messages:channel:' + channel, function (messages) {
 					MeanSocket.activeChannel = channel;
 					scope.afterJoin({
 						messages: messages,
@@ -104,7 +105,7 @@ angular.module('mean.socket').directive('useMeanSocket', function(Global, MeanSo
 					});
 				});
 
-				MeanSocket.on('message:channel:' + channel, function message(message) {
+				MeanSocket.on('message:channel:' + channel, function (message) {
 					if (channel === MeanSocket.activeChannel) {
 						scope.meanSocketAfterGet({
 							message: message
@@ -139,6 +140,7 @@ angular.module('mean.socket').directive('useMeanSocket', function(Global, MeanSo
 			scope.joinChannel('mean');
 
 			scope.$watch('joinToChannel', function() {
+				console.log('scope.joinToChannel:', scope.joinToChannel);
 				if (scope.joinToChannel)
 					scope.joinChannel(scope.joinToChannel);
 			});
