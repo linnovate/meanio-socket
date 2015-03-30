@@ -1,11 +1,11 @@
 {
   "name": "socket",
-  "version": "0.0.2",
-  "description": "Some description of mean-socket",
+  "version": "0.0.3",
+  "description": "Socket.io support for mean.io based applications",
   "author": {
     "name": "Rivka Tzur"
   },
-  "mean": "0.4.0",
+  "mean": "0.4.3",
   "engines": {
     "node": "0.10.x",
     "npm": "1.4.x"
@@ -19,7 +19,8 @@
     "q": "~1.0.1",
     "lodash": "^2.4.1",
     "cookie": "~0.1.2",
-    "connect": "~2.25.7"
+    "connect": "~2.25.7",
+    "mean-health":"latest"
   },
   "license": "MIT",
   "readme": "README: meanSocket",
