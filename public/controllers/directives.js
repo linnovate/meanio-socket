@@ -1,6 +1,6 @@
 'use strict'; //fix for safari
 
-angular.module('mean.socket').directive('meanSocket', function(Global, MeanSocket) {
+angular.module('mean.socket').directive('meanSocket', function(MeanUser, MeanSocket) {
 	return {
 		restrict: 'A',
 		replace: true,
@@ -12,7 +12,7 @@ angular.module('mean.socket').directive('meanSocket', function(Global, MeanSocke
 		link: function(scope, elm, attr) {
 			console.log(scope.message);
 
-			scope.global = Global;
+			scope.global = MeanUser;
 
 			// // ///////////////////////////////////////////////////////////////////////
 			// // ///////////////////////////////////////////////////////////////////////
@@ -39,7 +39,7 @@ angular.module('mean.socket').directive('meanSocket', function(Global, MeanSocke
 });
 
 
-angular.module('mean.socket').directive('useMeanSocket', function(Global, MeanSocket) {
+angular.module('mean.socket').directive('useMeanSocket', function(MeanUser, MeanSocket) {
 	return {
 		restrict: 'E',
 		scope: {
@@ -49,9 +49,7 @@ angular.module('mean.socket').directive('useMeanSocket', function(Global, MeanSo
 			meanSocketAfterGetAllChannels: '&'
 		},
 		link: function(scope, elm, attr) {
-
-			scope.global = Global;
-
+			scope.global = MeanUser;
 			scope.channel = {
 				name: ''
 			};
@@ -75,18 +73,16 @@ angular.module('mean.socket').directive('useMeanSocket', function(Global, MeanSo
 				});
 			});
 
-			// // MeanSocket.on('message:received', function messageReceived(message) {
-			// // 	$scope.messages.push(message);
-			// // });
-
+		
 			MeanSocket.emit('user:joined', {
 				user: scope.global.user._id
 			});
 
+		
 			MeanSocket.on('user:joined', function (user) {
-				// scope.meanSocketAfterGet({
-				// 	message: user
-				// });
+				/*scope.meanSocketAfterGet({
+					message: user
+				});*/
 			});
 
 			scope.listenChannel = function listenChannel(channel) {

@@ -2,7 +2,6 @@
 
 // The Package is past automatically as first parameter
 module.exports = function(MeanSocket, io) {
-
     var _ = require('lodash');
     var moment = require('moment');
     var mycontroller = require('../controllers/sockets');

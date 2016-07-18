@@ -11,7 +11,7 @@ module.exports = function(http) {
 
     io.use(function(socket, next) {
         var data = socket.request;
-
+/*
         if (!data.headers.cookie) {
             console.log('No cookie transmitted.');
             return next(new Error('No cookie transmitted.'));
@@ -19,15 +19,20 @@ module.exports = function(http) {
 
         console.log('data.headers.cookie:', data.headers.cookie);
 
-        var parsedCookie = cookie.parse(data.headers.cookie);
-        var sessionID = parsedCookie[config.sessionName];
-        var parsedSessionID = cookieParser.signedCookie(parsedCookie[config.sessionName], config.sessionSecret);
+         var parsedCookie = cookie.parse(data.headers.cookie);
+         if(!parsedCookie[config.sessionName]){
+            console.log('No sessionName.');
+            return next(new Error('No sessionName.'));
+        }
+
+         var sessionID = parsedCookie[config.sessionName];
+         var parsedSessionID = cookieParser.signedCookie(parsedCookie[config.sessionName], config.sessionSecret);
 
         if (sessionID === parsedSessionID) {
             console.log('Cookie is invalid.');
             return next(new Error('Cookie is invalid.'));
         }
-
+*/
         next();
     });
 

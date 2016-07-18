@@ -4,7 +4,8 @@
 var baseUrl = 'http://localhost:3000/';
 
 angular.module('mean.socket').factory('MeanSocket', function($rootScope) {
-	var socket = io.connect(baseUrl);
+
+ var socket = require('../assets/lib/socket.io-client')('http://localhost:3000/');
 	return {
 		on: function(eventName, callback) {
 			socket.on(eventName, function() {

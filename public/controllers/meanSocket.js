@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('mean.socket').controller('MeanSocketController', ['$scope', '$state', 'Global', 'MeanSocket',
-	function($scope, $state, Global, MeanSocket) {
-		$scope.global = Global;
+angular.module('mean.socket').controller('MeanSocketController', ['$scope', '$state', 'MeanUser', 'MeanSocket',
+	function($scope, $state, MeanUser, MeanSocket) {
+		$scope.global = MeanUser;
 		$scope.package = {
 			name: 'socket'
 		};

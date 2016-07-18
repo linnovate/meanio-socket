@@ -29,3 +29,5 @@ MeanSocket.register(function(app, auth, database, http) {
 
     return MeanSocket;
 });
+
+
