@@ -2,7 +2,7 @@
 
 angular.module('mean.socket').controller('MeanSocketController', ['$scope', '$state', 'MeanUser', 'MeanSocket',
 	function($scope, $state, MeanUser, MeanSocket) {
-		$scope.global = MeanUser;
+		$scope.user = MeanUser;
 		$scope.package = {
 			name: 'socket'
 		};
@@ -36,7 +36,7 @@ angular.module('mean.socket').controller('MeanSocketController', ['$scope', '$st
 		// // // $scope.channels = [];
 		// $scope.listeningChannels = [];
 		// // // $scope.activeChannel = null;
-		// // // $scope.userName = $scope.global.user._id;
+		// // // $scope.userName = $scope.user._id;
 		// // // $scope.messages = [];
 
 		// // // ///////////////////////////////////////////////////////////////////////
@@ -58,7 +58,7 @@ angular.module('mean.socket').controller('MeanSocketController', ['$scope', '$st
 		// // // });
 
 		// // // MeanSocket.emit('user:joined', {
-		// // // 	name: $scope.global.user._id
+		// // // 	name: $scope.user._id
 		// // // });
 
 		// // // MeanSocket.on('user:joined', function(user) {
@@ -106,7 +106,7 @@ angular.module('mean.socket').controller('MeanSocketController', ['$scope', '$st
 
 		// 	MeanSocket.emit('channel:join', {
 		// 		channel: channel,
-		// 		name: $scope.global.user._id
+		// 		name: $scope.user._id
 		// 	});
 		// };
 

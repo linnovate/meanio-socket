@@ -12,7 +12,7 @@ angular.module('mean.socket').directive('meanSocket', function(MeanUser, MeanSoc
 		link: function(scope, elm, attr) {
 			console.log(scope.message);
 
-			scope.global = MeanUser;
+			scope.user = MeanUser.user;
 
 			// // ///////////////////////////////////////////////////////////////////////
 			// // ///////////////////////////////////////////////////////////////////////
@@ -26,7 +26,7 @@ angular.module('mean.socket').directive('meanSocket', function(MeanUser, MeanSoc
 				}
 				MeanSocket.emit('message:send', {
 					message: message,
-					user: scope.global.user,
+					user: scope.user,
 					channel: MeanSocket.activeChannel
 				});
 				scope.afterSend({
@@ -49,7 +49,7 @@ angular.module('mean.socket').directive('useMeanSocket', function(MeanUser, Mean
 			meanSocketAfterGetAllChannels: '&'
 		},
 		link: function(scope, elm, attr) {
-			scope.global = MeanUser;
+			scope.user = MeanUser;
 			scope.channel = {
 				name: ''
 			};
@@ -58,7 +58,7 @@ angular.module('mean.socket').directive('useMeanSocket', function(MeanUser, Mean
 			// // $scope.channels = [];
 			scope.listeningChannels = [];
 			// // $scope.activeChannel = null;
-			// // $scope.userName = $scope.global.user._id;
+			// // $scope.userName = $scope.user._id;
 			// // $scope.messages = [];
 
 			// // ///////////////////////////////////////////////////////////////////////
@@ -75,7 +75,7 @@ angular.module('mean.socket').directive('useMeanSocket', function(MeanUser, Mean
 
 		
 			MeanSocket.emit('user:joined', {
-				user: scope.global.user._id
+				user: scope.user._id
 			});
 
 		
@@ -128,7 +128,7 @@ angular.module('mean.socket').directive('useMeanSocket', function(MeanUser, Mean
 
 				MeanSocket.emit('channel:join', {
 					channel: channel,
-					name: scope.global.user._id
+					name: scope.user._id
 				});
 			};
 
